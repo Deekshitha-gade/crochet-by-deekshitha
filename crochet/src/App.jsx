@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Background from "./components/Background";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "./components/Productcard";
 import ProductModal from "./components/Productmodal";
 import { API_URL } from "./config";
 import "./App.css";
