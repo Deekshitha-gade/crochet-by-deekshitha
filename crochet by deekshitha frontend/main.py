@@ -14,7 +14,7 @@ app.mount("/images", StaticFiles(directory=BASE_DIR / "images"), name="images")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5175", "http://127.0.0.1:5175", "https://crochet-frontend-ggwj.onrender.com/"],
+    allow_origins=["http://localhost:5175", "http://127.0.0.1:5175", "https://crochet-frontend-ggwj.onrender.com"],
     allow_methods=["GET"],
     allow_headers=["*"],
 )
