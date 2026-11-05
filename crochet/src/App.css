@@ -1,0 +1,302 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600&display=swap");
+
+:root {
+  --cream: #fff8f3;
+  --pink: #fbd5dd;
+  --pink-deep: #e58fa3;
+  --mint: #d4efe3;
+  --lavender: #e3d9fa;
+  --butter: #fdf0c4;
+  --ink: #5b4a58;
+  --ink-soft: #8d7a8a;
+  --card: rgba(255, 255, 255, 0.82);
+  --shadow: 0 8px 24px rgba(180, 140, 170, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Quicksand", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(160deg, #fff6f2 0%, #f6efff 50%, #eefaf4 100%);
+  background-attachment: fixed;
+}
+
+/* ---------- Background decorations ---------- */
+
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-item {
+  position: absolute;
+  opacity: 0.6;
+  transform: rotate(var(--rot));
+  animation: drift ease-in-out infinite;
+}
+
+.bg-item svg {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot));
+  }
+  50% {
+    transform: translateY(-16px) rotate(calc(var(--rot) + 7deg));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-item {
+    animation: none;
+  }
+}
+
+/* ---------- Layout ---------- */
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px 32px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--butter);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.hero h1 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin: 0 0 8px;
+  color: #6b4a63;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.controls input,
+.controls select {
+  font: inherit;
+  color: var(--ink);
+  padding: 12px 18px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.controls input {
+  flex: 1 1 260px;
+  max-width: 400px;
+}
+
+.controls input:focus,
+.controls select:focus {
+  border-color: var(--pink-deep);
+}
+
+/* ---------- Product grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: var(--card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(180, 140, 170, 0.28);
+  outline: none;
+}
+
+.card-img {
+  aspect-ratio: 1 / 1;
+  background: var(--lavender);
+  display: grid;
+  place-items: center;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-placeholder {
+  font-size: 3rem;
+}
+
+.card-body {
+  padding: 16px 18px 20px;
+}
+
+.card-body h3 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0 0 6px;
+  text-transform: capitalize;
+}
+
+.card-body p {
+  margin: 0 0 14px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.price {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--mint);
+  font-weight: 600;
+}
+
+.price.big {
+  font-size: 1.2rem;
+  padding: 8px 18px;
+}
+
+/* ---------- Messages & footer ---------- */
+
+.state-msg {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 40px 0;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 56px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/* ---------- Modal ---------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(107, 74, 99, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  position: relative;
+  width: min(460px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fffdfb;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(107, 74, 99, 0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: var(--lavender);
+}
+
+.modal-body {
+  padding: 22px 24px 28px;
+}
+
+.modal-body h2 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  margin: 0 0 8px;
+  text-transform: capitalize;
+}
+
+.modal-body p {
+  margin: 0 0 18px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
